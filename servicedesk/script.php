@@ -13,6 +13,13 @@ function debug()
 	echo "</pre>";
 }
 
+// Функция "Заявка в ТП"
+function create_request()
+{
+	global $USER;
+	
+}
+
 //Функция "Заявки на оплату"
 function OSN()
 {
@@ -172,6 +179,13 @@ if (isset($_POST['debug_button']))
 {
 	$APPLICATION->SetTitle("Debug Page");
 	debug();
+}
+
+// Обработка вызова функции "Заявка в ТП"
+if (isset($_POST['request']))
+{
+	$APPLICATION->SetTitle("Заявка создана");
+	create_request();
 }
 
 //Обработка вызова функции "Заявки на оплату"
