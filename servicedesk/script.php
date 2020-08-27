@@ -54,7 +54,20 @@ function create_request()
 	}
 	
 	//Формироване дейдлайна
-	$deadline = date('d.m.Y H:i:s', strtotime($Realtime.' +2 hours'));
+	$hour = date('H');
+	if($hour >= 16 && $hour <= 9)
+	{
+		$nextday = date('d.m.Y', strtotime($Realtime.' +1 day'));
+		ob_start();
+		echo $nextday, " 10:00:00";
+		$deadline = ob_get_contents();
+		ob_end_clean();
+	}
+	else
+	{
+		$deadline = date('d.m.Y H:i:s', strtotime($Realtime.' +2 hours'));
+	}
+
 	
 	//Формирование заголовка задачи
 	ob_start();
