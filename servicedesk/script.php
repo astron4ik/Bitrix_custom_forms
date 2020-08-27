@@ -81,7 +81,8 @@ function create_request()
 		"DEADLINE" => $deadline,
 		"TAGS" => $Tags,
 		"TASK_CONTROL" => "Y",
-		"ALLOW_CHANGE_DEADLINE" => "Y"
+		"ALLOW_CHANGE_DEADLINE" => "Y",
+		"GROUP_ID" => "88"
     );
 	
 	//Добавление задачи и получение ID
