@@ -90,7 +90,7 @@ function create_request()
 
 	echo '<pre>';
 	echo "Задача в Тех. Поддержку создана: ", $ID, "<br>";
-	echo "Ссылка на задачу: <a href=\"https://in.autokontinent.ru/company/personal/user/", $USER->GetID(),"/tasks/task/view/", $ID, "/\">Здесь</a>";
+	echo "Ссылка на задачу: <a href=\"https://in.autokontinent.ru/company/personal/user/", $USER->GetID(),"/tasks/task/view/", $ID, "/\">Здесь</a><br>";
 	echo "А так же, вы можете посмотреть задачи в очереди: <a href=\"https://in.autokontinent.ru/servicedesk/queue.php\">Здесь</a>";
 }
 
