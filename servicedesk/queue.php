@@ -57,7 +57,7 @@ if (CModule::IncludeModule("tasks"))
 			echo "<tr class=\"intask-row\">";
 			echo "<td class=\"intask-cell\">".$arTask['ID']."</td>";
 			echo "<td class=\"intask-cell\">".$arTask['CREATED_BY_LAST_NAME'], " ", $arTask['CREATED_BY_NAME'], " ",$arTask['CREATED_BY_SECOND_NAME']."</td>";
-			echo "<td class=\"intask-cell\">".$arTask['TITLE']."</td>";
+			echo "<td class=\"intask-cell\"><a href=\"https://in.autokontinent.ru/company/personal/user/", $USER->GetID(),"/tasks/task/view/",$arTask['ID'],"/\">",$arTask['TITLE'],"</a></td>";
 			echo "<td style=\"min-width: 100px;\" class=\"intask-cell\">".$arTask['DEADLINE']."</td>";
 			echo "<input type=\"hidden\" name=\"id\" value=\"".$arTask['ID']."\">";
 			echo "<td class=\"intask-cell\"><button class=\"ui-btn ui-btn-themes ui-btn-icon-setting ui-btn-icon-task tasks-quick-form-button\" type=\"submit\" style=\"cursor:pointer;\" name=\"getTask\" value=\"getTask\"/>Начать работу по задаче</button></td>";
