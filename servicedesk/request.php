@@ -1,6 +1,6 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Заявка на Тех. Поддержку");
+$APPLICATION->SetTitle("Заявка в Тех. Поддержку");
 ?>
 
 <form action="/servicedesk/script.php" method="post">
@@ -14,15 +14,9 @@ $APPLICATION->SetTitle("Заявка на Тех. Поддержку");
 		<option value="wms">WMS Solvo</option>
 		<option value="ax">MSDAX Axapta</option>
 	</select></td></tr>
-	<tr><td>Тип обращения: </td><td>
-	<select name="type_req" width="100%" required>
-		<option value="Инцидент" selected>Инцидент</option>
-		<option value="Консультация">Консультация</option>
-	</select></td></tr>
 	<tr><td>Тема обращения:</td><td> <input type="text" name="small_description" required /></td></tr>
 	<tr><td><label for="description">Описание проблемы</label></td>
-	<td><textarea name="description" required></textarea></td></tr>
-	<tr><td>Срочно?</td><td> <input type="checkbox" name="quickly" value="true">
+	<td><textarea name="description" cols="60" rows="15" required></textarea></td></tr>
 	<tr><td></td><td>*После создания задачи, все исправления указываем в комментария к задаче.</td></tr>
 	<tr><td></td><td>*Описание задачи НЕ РЕДАКТИРУЕМ !!!</td></tr>
 </table>
