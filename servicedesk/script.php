@@ -55,9 +55,17 @@ function create_request()
 	
 	//Формироване дейдлайна
 	$hour = date('H');
-	if($hour >= 16 && $hour <= 9)
+	if($hour >= 16)
 	{
 		$nextday = date('d.m.Y', strtotime($Realtime.' +1 day'));
+		ob_start();
+		echo $nextday, " 10:00:00";
+		$deadline = ob_get_contents();
+		ob_end_clean();
+	}
+	elseif ($hour <= 9)
+	{
+		$nextday = date('d.m.Y', strtotime($Realtime.' +0 day'));
 		ob_start();
 		echo $nextday, " 10:00:00";
 		$deadline = ob_get_contents();
