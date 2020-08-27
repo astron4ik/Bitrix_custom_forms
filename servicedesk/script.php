@@ -53,24 +53,18 @@ function create_request()
 		$Tags = 'DAXServiceDesk';
 	}
 	
-	if ($_POST['quickly'] == 'true')
-	{
-		$quickly = '-[СРОЧНО]';
-	}
-	
 	//Формироване дейдлайна
 	$deadline = date('d.m.Y H:i:s', strtotime($Realtime.' +2 hours'));
 	
 	//Формирование заголовка задачи
 	ob_start();
-	echo "[ТехПоддержка]-", $addTitle, "-", $_POST['small_description'], $quickly;
+	echo "[ТехПоддержка]-", $addTitle, "-", $_POST['small_description'];
 	$TitleVar = ob_get_contents();
 	ob_end_clean();
 	
 	//Формирование описание задачи
 	ob_start();
 	echo "<b>Программа</b>: ", $addTitle, "<br>",
-		"<b>Тип обращения</b>: ", $_POST['type_req'], "<br>",
 		"<b>Описание проблемы</b>: ", $_POST['description'], "<br>",
 		"<b>Тег</b>: ", $Tags, "<br>";
 	$TaskDescription = ob_get_contents();
