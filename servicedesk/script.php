@@ -36,7 +36,7 @@ function create_request()
 		$addTitle = '[WMS Solvo]';
 		
 		//Список наблюдателей
-		$arAuditors = array(98, 31, 277, $USER->GetID()); // Макаров, Кириченко, Ратникова
+		$arAuditors = array(98, 31, $USER->GetID()); // Макаров, Кириченко, Ратникова
 		
 		// Теги к задаче
 		$Tags = 'WMSServiceDesk';
@@ -47,12 +47,12 @@ function create_request()
 		$addTitle = '[MSDAX Axapta]';
 		
 		//Список наблюдателей
-		$arAuditors = array(98, 31, 277, $USER->GetID()); // Макаров, Кириченко, Ратникова
+		$arAuditors = array(98, 31, $USER->GetID()); // Макаров, Кириченко, Ратникова
 		
 		// Теги к задаче
 		$Tags = 'DAXServiceDesk';
 	}
-	
+
 	//Формироване дейдлайна
 	$hour = date('H');
 	if($hour >= 16)
@@ -76,7 +76,17 @@ function create_request()
 		$deadline = date('d.m.Y H:i:s', strtotime($Realtime.' +2 hours'));
 	}
 
-	
+	//Формирование срочности
+	if ($_POST['quickly'] == 'true')
+	{
+		$varPRIORITY = "2";
+		$deadline = date('d.m.Y H:i:s', strtotime($Realtime.' +15 minutes'));
+	}
+	else
+	{
+		$varPRIORITY = "1";
+	}
+
 	//Формирование заголовка задачи
 	ob_start();
 	echo "[ТехПоддержка]-", $addTitle, "-", $_POST['small_description'];
@@ -94,6 +104,7 @@ function create_request()
 	//массив структуры задачи
 	$arFields = Array(
 		"TITLE" => $TitleVar,
+		"PRIORITY" => $varPRIORITY,
 		"SITE_ID" => "s1",
 		"DESCRIPTION" => $TaskDescription,
 		"RESPONSIBLE_ID" => $RESPONSIBLE_ID,
@@ -113,7 +124,7 @@ function create_request()
 	echo '<pre>';
 	echo "Задача в Тех. Поддержку создана: ", $ID, "<br>";
 	echo "Ссылка на задачу: <a href=\"https://in.autokontinent.ru/company/personal/user/", $USER->GetID(),"/tasks/task/view/", $ID, "/\">Здесь</a><br>";
-	echo "А так же, вы можете посмотреть задачи в очереди: <a href=\"https://in.autokontinent.ru/servicedesk/queue.php\">Здесь</a>";
+	echo "А так же, вы можете посмотреть задачи в очереди: <a href=\"https://in.autokontinent.ru/servicedesk/queue_ro.php\">Здесь</a>";
 }
 
 //Обработка вызова функции дебага
