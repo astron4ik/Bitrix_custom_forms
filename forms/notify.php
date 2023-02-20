@@ -45,7 +45,7 @@ if (CModule::IncludeModule("im"))
 		$rsTask = $rsTask + $result;
 	}
 
-	//Bitrix\Main\Diag\Debug::writeToFile(array('fields'=>$_GET),"","/log/handler_log_1");
+	Bitrix\Main\Diag\Debug::writeToFile(array('fields'=>$_GET),"","/log/handler_log_1");
 
 	/*if ($_GET['id']) {
 		Bitrix\Main\Diag\Debug::writeToFile(array('fields'=>$_GET['id']),"","/log/handler_log_2");
@@ -78,15 +78,45 @@ if (CModule::IncludeModule("im"))
 				}
 			}
 		}
-		header("Location:https://in.autokontinent.ru/forms/notify.php");
+		header("Location:https://192.168.40.220/forms/notify.php");
 	}
 	else {
 		echo "</br>";
 	}
 
+	echo '<script type="text/javascript">
+	function SelectAll()
+	{
+		var checkboxs = document.getElementsByName(\'arTaskIdNotifyRead[]\');
+		var bt_checkbox = document.getElementById(\'chnt\');
+		for(var i in checkboxs){
+			if(bt_checkbox.value == \'select\'){
+				checkboxs[i].checked = \'FALSE\';
+				if (i == checkboxs.length - 1){
+					bt_checkbox.value = \'deselect\';
+				}
+			}
+			else {
+				checkboxs[i].checked = \'\';
+				if (i == checkboxs.length - 1){
+					bt_checkbox.value = \'select\';
+				}
+			}
+		}
+	}
+	</script>';
+	
+
+
+	echo '<form action=/forms/notify.php method="get">';
+	echo '<div style="display: flex;justify-content: flex-end;"><div style="text-align: right;">
+		<input type="checkbox" id="chnt" name="all_check" onclick="SelectAll()" value="select"><label for="chnt">Отметить все</label>
+		</div>';
+	echo '<div style="text-align: right;margin-left: 10px;">
+		<button class="ui-btn ui-btn-themes ui-btn-icon-setting ui-btn-icon-task tasks-quick-form-button" type="submit" style="cursor:pointer;" value=""/>Прочитать</button>
+</div></div>';
 	echo '<table class="intask-main data-table">';
 	echo '<legend>Список уведомлений.</legend>';
-	echo '<form action=/forms/notify.php method="get">';
 	echo '<thead>';
 	echo '<tr class=\"intask-row selected\">
 		<td class=\"intask-cell\">№</td>
@@ -95,8 +125,8 @@ if (CModule::IncludeModule("im"))
 		<td class=\"intask-cell\">time</td>
 		<td class=\"intask-cell\">date</td>
 		<td class=\"intask-cell\">idTask</td>';
-	echo '<td class="intask-cell"><button class="ui-btn ui-btn-themes ui-btn-icon-setting ui-btn-icon-task tasks-quick-form-button" type="submit"
-		style="cursor:pointer;" value=""/>Прочитать</button></td>';
+	echo '<td class="intask-cell">
+		</td>';
 	//echo '<td>Действие</td>';
 	echo '</tr>';
 	echo '</thead>';
@@ -137,14 +167,14 @@ if (CModule::IncludeModule("im"))
 		for ($row = $value['id']; $row > 0; $row--) {
 			if ($rsTask[$row]['id'] == $bp_id_notify)
 			{
-				if ($rsTask[$row]['read'] == 'N') {
+				if ($rsTask[$row]['read'] == N) {
 					//Bitrix\Main\Diag\Debug::writeToFile(array('fields'=>$rsTask[$row]['id']),"","/log/handler_log_2");
 					$SetReadNotifity = $CIMNElement->MarkNotifyRead($rsTask[$row]['id']);
 					break;
 				}
 			}
 		}
-		header("Location:https://in.autokontinent.ru/forms/notify.php");
+		header("Location:https://192.168.40.220/forms/notify.php");
 	}
 	else {
 		echo "</br>";
